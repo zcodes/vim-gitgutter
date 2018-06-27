@@ -68,6 +68,7 @@ function! s:on_exit_nvim(_job_id, exit_code, _event) dict abort
   if !a:exit_code
     call self.handler.out(self.buffer, join(self.stdoutbuffer, "\n"))
   endif
+  let g:gitgutter_in_async_execute = 0
 endfunction
 
 
@@ -86,4 +87,5 @@ endfunction
 
 function! s:on_exit_vim(_channel) dict abort
   call self.handler.out(self.buffer, join(self.stdoutbuffer, "\n"))
+  let g:gitgutter_in_async_execute = 0
 endfunction

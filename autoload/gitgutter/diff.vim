@@ -66,6 +66,13 @@ function! gitgutter#diff#run_diff(bufnr, preserve_full_diff) abort
     throw 'gitgutter not tracked'
   endif
 
+  if g:gitgutter_async && gitgutter#async#available() &&
+        \ exists('g:gitgutter_in_async_execute') &&
+        \ g:gitgutter_in_async_execute == 1
+    return
+  else
+    let g:gitgutter_in_async_execute = 1
+  endif
 
   " Wrap compound commands in parentheses to make Windows happy.
   " bash doesn't mind the parentheses.
