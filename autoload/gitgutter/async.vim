@@ -62,6 +62,7 @@ endfunction
 
 function! s:on_stderr_nvim(_job_id, _data, _event) dict abort
   call self.handler.err(self.buffer)
+  let g:gitgutter_in_async_execute = 0
 endfunction
 
 function! s:on_exit_nvim(_job_id, exit_code, _event) dict abort
@@ -83,6 +84,7 @@ function! s:on_stderr_vim(channel, _data) dict abort
   catch /E906/
     " noop
   endtry
+  let g:gitgutter_in_async_execute = 0
 endfunction
 
 function! s:on_exit_vim(_channel) dict abort
